@@ -221,4 +221,4 @@ if not df.empty:
 
     st.plotly_chart(fig_tiempo, use_container_width=True)
 else:
-    st.info("No hay registros en el DataFrame para graficar."
+    st.info("No hay registros en el DataFrame para graficar.")
