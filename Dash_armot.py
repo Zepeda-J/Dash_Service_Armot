@@ -2,15 +2,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+from PIL import Image  # <-- Asegúrate de que esta línea esté presente
 
-# ==============================================================================
-# 1. CONFIGURACIÓN INICIAL DE LA PÁGINA 
-# ==============================================================================
+# Configuración inicial de la página
 st.set_page_config(
     page_title="Dashboard Armot", 
     layout="wide", 
     page_icon="Armot_Color.png" 
 )
+
+# --- NUEVA LÍNEA: Cargar el logo de forma segura en memoria ---
+logo_empresa = Image.open("Armot_Color.png")
 
 # ==============================================================================
 # 2. INYECCIÓN DE ESTILOS CSS (Garantiza el centrado y la responsividad)
@@ -55,19 +57,25 @@ st.html(
 )
 
 # ==============================================================================
-# 3. ENCABEZADO OPTIMIZADO (Cambia el diseño dinámicamente si es PC o Móvil)
+# 3. ENCABEZADO OPTIMIZADO Y RESPONSIBO (CON LOGO CORREGIDO)
 # ==============================================================================
-# Eliminamos las columnas fijas que causaban distorsión y usamos contenedores centrados
+# Creamos una estructura de 3 columnas para centrar la imagen en la PC, en móvil se adaptará sola
+col_izq_img, col_centro_img, col_der_img = st.columns([1, 0.4, 1])
+
+with col_centro_img:
+    # Mostramos la imagen cargada en memoria. Streamlit se encarga de servirla correctamente en la nube.
+    st.image(logo_empresa, use_container_width=True)
+
+# Título principal centrado con HTML responsivo
 st.html(
     """
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
-        <img src="app/static/Armot_Color.png" style="max-width: 160px; width: 100%; height: auto; margin-bottom: 10px;">
-        <h1 class="responsive-title" style="margin: 0; padding: 0;">Servicios Armot 2026</h1>
+    <div style="text-align: center; width: 100%;">
+        <h1 class="responsive-title" style="margin: 0; padding: 0; text-align: center;">Servicios Armot 2026</h1>
     </div>
     """
 )
 
-st.markdown("---") 
+st.markdown("---")
 
 # ==============================================================================
 # 4. CARGA Y PROCESAMIENTO DE DATOS
