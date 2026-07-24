@@ -32,23 +32,17 @@ st.markdown("---") # Línea divisoria estética
 st.write("")
 st.write("")
 
-# 1. Carga de datos
+# ==============================================================================
+# 4. CARGA Y PROCESAMIENTO DE DATOS
+# ==============================================================================
 @st.cache_data
 def cargar_datos():
-    # Se añade el motor openpyxl para asegurar compatibilidad con archivos .xlsx
     datasets = pd.read_excel("Servicio.xlsx", engine="openpyxl")
     return datasets
 
 df = cargar_datos()
 
-# Configuración del módulo de moneda local para México
-try:
-    lc.setlocale(lc.LC_ALL, "es_MX.UTF-8")
-except Exception:
-    # Respaldo por si el sistema operativo no tiene cargado el locale de MX
-    lc.setlocale(lc.LC_ALL, "")
-
-# --- PROCESAMIENTO DE DATOS (Solo si el DataFrame no está vacío) ---
+# --- REEMPLAZO DE LOCALE POR FORMATEO NATIVO (A PRUEBA DE ERRORES EN LA NUBE) ---
 if not df.empty:
     # Totales numéricos globales
     Dependencias_unicas = df["Dependencia"].nunique()
@@ -56,29 +50,30 @@ if not df.empty:
     Total_de_operarios_min_en_contrato = df["Elementos minimos"].sum()
     Total_de_operarios_maximos_en_contrato = df["Elementos máximos"].sum()
     
-    # Intento de cálculo de coordinadores (Ajusta 'Coordinador' por el nombre real de tu columna si existe)
     if "Coordinador" in df.columns:
         Total_coordinadores = df["Coordinador"].nunique()
     else:
-        Total_coordinadores = 0 # Valor por defecto si no existe la columna en el Excel
+        Total_coordinadores = 0
 
-    # Cálculo y formateo de montos monetarios
+    # --- NUEVO FORMATEO FINANCIERO SEGURO ---
+    # Calculamos las sumas
     Monto_minimo_sin_IVA = df["Monto mínimo sin IVA"].sum()
-    Cantidad_formateada_min_sin_IVA = lc.currency(Monto_minimo_sin_IVA, grouping=True)
-
     Monto_minimo_con_IVA = df["Monto mínimo con IVA"].sum()
-    Cantidad_formateada_min_con_IVA = lc.currency(Monto_minimo_con_IVA, grouping=True)
-
     Monto_maximo_sin_IVA = df["Monto máximo sin IVA"].sum()
-    Cantidad_formateada_max_sin_IVA = lc.currency(Monto_maximo_sin_IVA, grouping=True)
-
     Monto_maximo_con_IVA = df["Monto máximo con IVA"].sum()
-    Cantidad_formateada_max_con_IVA = lc.currency(Monto_maximo_con_IVA, grouping=True)
+
+    # Formateamos usando f-strings: agrega '$', comas en miles y 2 decimales
+    Cantidad_formateada_min_sin_IVA = f"${Monto_minimo_sin_IVA:,.2f}"
+    Cantidad_formateada_min_con_IVA = f"${Monto_minimo_con_IVA:,.2f}"
+    Cantidad_formateada_max_sin_IVA = f"${Monto_maximo_sin_IVA:,.2f}"
+    Cantidad_formateada_max_con_IVA = f"${Monto_maximo_con_IVA:,.2f}"
 
 else:
-    # Valores por defecto en caso de archivo vacío
+    # Valores por defecto si el Excel está vacío
     Dependencias_unicas = 0
     Total_unidades = 0
+    Total_de_operarios_min_en_contrato = 0
+    Total_de_operarios_maximos_en_contrato = 0
     Total_coordinadores = 0
     Cantidad_formateada_min_sin_IVA = "$0.00"
     Cantidad_formateada_min_con_IVA = "$0.00"
