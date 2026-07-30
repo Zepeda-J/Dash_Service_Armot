@@ -486,3 +486,5 @@ fig.update_layout(
 
 # 5. Renderizar en Streamlit
 st.plotly_chart(fig, use_container_width=True)
+
+
