@@ -7,3 +7,7 @@ numpy
 openpyxl
 openai
 google-genai
+toml
+google-generativeai
+pillow
+tabulate
