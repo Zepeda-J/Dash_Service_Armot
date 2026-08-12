@@ -11,3 +11,4 @@ toml
 google-generativeai
 pillow
 tabulate
+qrcode
