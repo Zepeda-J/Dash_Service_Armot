@@ -12,7 +12,10 @@ google-generativeai
 pillow
 tabulate
 qrcode
+gspread
 google-api-python-client
 google-auth
 google-auth-httplib2
+
+
 
