@@ -567,7 +567,7 @@ if _diag and not error_carga_datos:
 # Si cambia un encabezado en el Google Sheet, actualízalo AQUÍ y se propaga
 # automáticamente a todo el dashboard (Resumen Global, IA, filtros, gráficas).
 COLUMNAS = {
-    "dependencia": "Dependencia / Entidad",
+    "dependencia": "Abreviatura Dependencia",
     "estado": "Entidad Federativa",
     "unidades": "Inmuebles / unidades",
     "operarios_min": "No. Operarios Mínimo",
