@@ -68,6 +68,7 @@ USUARIOS = {
     "Fernando": {"clave": "Fernando_armot_2026", "rol": "usuario"},
     "Alfonso": {"clave": "Alfonso_armot_2026", "rol": "usuario"},
     "Nayeli": {"clave": "Nayeli_armot_2026", "rol": "usuario"},
+    "Cass": {"clave": "Cass.contratos", "rol": "usuario"},
 }
 
 for clave, valor in {
