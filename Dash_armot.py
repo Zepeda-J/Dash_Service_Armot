@@ -905,8 +905,8 @@ st.html(
 
 st.markdown("<h1 style='text-align: center;'>Panel de Control</h1>", unsafe_allow_html=True)
 
-pestana_resumen_global, pestana_contratos, pestana_coordinadores, pestana_administracion, pestana_facturacion = st.tabs(
-    ["Resumen Global", "Contratos", "Coordinadores", "Administración", "Seguimiento de facturación"]
+pestana_resumen_global, pestana_contratos, pestana_coordinadores, pestana_administracion, pestana_facturacion, pestana_acuerdos = st.tabs(
+    ["Resumen Global", "Contratos", "Coordinadores", "Administración", "Seguimiento de facturación", "Acuerdos"]
 )
 
 st.markdown("---")
@@ -3222,3 +3222,14 @@ with pestana_administracion:
 with pestana_facturacion:
     st.title("📑 Seguimiento de Facturación")
     st.caption("Módulo para consulta de estatus presupuestal y cobranza.")
+
+
+
+
+
+#===============================================================================
+#PESATAÑA "Acuerdos y Convenios"
+#===============================================================================
+with pestana_acuerdos:
+    st.title("🤝 Acuerdos y Convenios")
+    st.caption("Módulo para consulta de acuerdos y convenios con clientes y/o proveedores.")
