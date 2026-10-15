@@ -73,6 +73,7 @@ USUARIOS = {
     "admin": {"clave": "Alex", "rol": "admin"},
     "Fernando": {"clave": "Fernando_armot2026", "rol": "usuario"},
     "Alfonso": {"clave": "Alfonso_armot2026", "rol": "usuario"},
+    "Julio": {"clave : "Julio_armot2026", "rol": "usuario"}.
     "Nayeli": {"clave": "Naye_armot2026", "rol": "usuario"},
     "Cass": {"clave": "Cass.contratos", "rol": "usuario"},
     "Karla": {"clave": "Karla.conbranza", "rol": "usuario"},
