@@ -19,3 +19,9 @@ google-auth-httplib2
 
 
 
+#Base de Datos Supabase
+sqlalchemy
+psycopg[binary]
+bcrypt
+
+
